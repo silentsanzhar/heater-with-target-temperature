@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
 @Component({
   selector: 'heater-with-temp',
@@ -20,6 +20,14 @@ export class HeaterWithTempComponent implements OnChanges {
   lengthOfLineOutsideOfCircle = this.heaterRadius + this.heaterRadiusOffset - (this.heaterRadius / Math.sqrt(2));
 
   ngOnChanges(): void {
+    if (this.minTemp > this.maxTemp || this.maxTemp < this.minTemp) {
+      throw new Error('The maximum temperature cannot be less than the minimum temperature, or vice versa');
+    }
+
+    if (this.targetTemp > this.maxTemp || this.targetTemp < this.minTemp) {
+      throw new Error('The target temperature cannot be less than the minimum temperature or more than the maximum temperature.');
+    }
+
     this.heaterNeedleAngle = this.targetTemp / (this.maxTemp - this.minTemp) * 270;
   }
 }
