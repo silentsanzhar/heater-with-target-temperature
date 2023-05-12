@@ -1,0 +1,41 @@
+<svg [attr.width]="heaterDiameter" [attr.height]="heaterDiameter">
+  <circle
+    stroke="grey"
+    fill="white"
+    [attr.stroke-width]="heaterNeedleWidth"
+    [attr.r]="heaterRadius - heaterRadiusOffset"
+    [attr.cx]="heaterDiameter / 2"
+    [attr.cy]="heaterDiameter / 2"
+  />
+
+  <g stroke="#444" [attr.stroke-width]="heaterNeedleWidth">
+    <line
+      stroke="black"
+      [attr.stroke-width]="heaterNeedleWidth * 2"
+      [style.transformOrigin]="heaterRadius + 'px'"
+      [style.transform]="'rotate(' + heaterNeedleAngle + 'deg)'"
+      [attr.x1]="lengthOfLineOutsideOfCircle"
+      [attr.y1]="heaterDiameter - lengthOfLineOutsideOfCircle"
+      [attr.x2]="heaterRadius"
+      [attr.y2]="heaterRadius"
+    ></line>
+
+    <line
+      x1="0"
+      y1="100%"
+      [attr.x2]="lengthOfLineOutsideOfCircle"
+      [attr.y2]="heaterDiameter - lengthOfLineOutsideOfCircle"
+    ></line>
+
+    <line
+      x1="100%"
+      y1="100%"
+      [attr.x2]="heaterDiameter - lengthOfLineOutsideOfCircle"
+      [attr.y2]="heaterDiameter - lengthOfLineOutsideOfCircle"
+    ></line>
+  </g>
+</svg>
+
+<h2>
+  <strong>{{ targetTemp }} °C</strong>
+</h2>
